@@ -38,3 +38,7 @@ INSERT INTO bitings (zombie_id, victim_id, infected_on) VALUES (1, 1, 'October 2
 SELECT * FROM zombies;
 SELECT * FROM victims;
 SELECT * FROM bitings;
+
+SELECT * FROM zombies WHERE name = 'John';
+SELECT victim_id FROM bitings WHERE zombie_id = 1;
+SELECT name FROM victims WHERE id IN (1,3);
