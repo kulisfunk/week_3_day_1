@@ -71,7 +71,7 @@ def update()
     db.close
   end
 
-  def self.find(homeworld)
+  def self.find(homeworld) #called by Bounties.find
     db = PG.connect({ dbname: 'space_cowboys', host: 'localhost'})
     sql = "SELECT * FROM bounty_list WHERE homeworld=$1;"
     values = [homeworld]
