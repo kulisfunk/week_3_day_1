@@ -45,7 +45,7 @@ attr_accessor :album_name, :genre, :artist_id
     sql = "SELECT * FROM artists WHERE id = $1;"
     values = [@artist_id]
     artists = SqlRunner.run(sql, "album_artist", values)
-    return artists.map { |artists| Artist.new(artists)} #because there are multiple hashes returned
+    return artists.map { |artists| Artist.new(artists)} 
   end
 
   def update()
@@ -64,6 +64,13 @@ attr_accessor :album_name, :genre, :artist_id
     sql = "DELETE FROM albums WHERE ID=$1"
     values = [@id]
     result = SqlRunner.run(sql, "delete_albums", values)
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM albums WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, "album_find", values)
+    return result.map { |album| Album.new(album) }[0].album_name
   end
 
 end

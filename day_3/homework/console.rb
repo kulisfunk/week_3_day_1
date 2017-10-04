@@ -17,8 +17,6 @@ artist2 = Artist.new({
 
 artist2.save()
 
-    # artist1.first_name = "Leia"
-    # artist1.update()
 
 
 album1 = Album.new({

@@ -44,7 +44,7 @@ attr_reader :id
     sql = "SELECT * FROM albums WHERE artist_id = $1"
     values = [@id]
     albums = SqlRunner.run(sql, "artist_albums", values)
-    return albums.map { |albums| Album.new(albums)} #because there are multiple hashes returned
+    return albums.map { |albums| Album.new(albums)}
 
   end
 
@@ -66,15 +66,12 @@ attr_reader :id
     result = SqlRunner.run(sql, "delete_artist", values)
   end
 
-  # def self.find(first_name)
-  #   sql = "SELECT * FROM customers WHERE first_name = $1"
-  #   values = [first_name]
-  #   custs = SqlRunner.run(sql, "delete_all", values)# add [0] if not using .map
-  #   return custs.map { |cust_hash| Customer.new(cust_hash) }
-  # end
-  #
-  
-  # end
+  def self.find(id)
+    sql = "SELECT * FROM artists WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, "artist_find", values)
+    return result.map { |artist| Artist.new(artist) }[0].artist_name
+  end
 
 
 end
