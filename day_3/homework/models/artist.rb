@@ -33,24 +33,39 @@ attr_reader :id
     result = SqlRunner.run(sql, "delete_all", values)
   end
 
-  # def update()
-  #   sql = "UPDATE customers SET (
-  #   first_name, last_name
-  #   ) = (
-  #     $1, $2
-  #   ) WHERE id = $3
-  #   ;
-  #   "
-  #   values = [@first_name, @last_name, @id]
-  #   result = SqlRunner.run(sql, "update_customer", values)
-  # end
-  #
-  # def delete()
-  #   sql = "DELETE FROM customers WHERE ID=$1"
-  #   values = [@id]
-  #   result = SqlRunner.run(sql, "delete_customer", values)
-  # end
-  #
+  def self.show_artists()
+    sql = "SELECT * FROM artists"
+    values = []
+    list = SqlRunner.run(sql, "show_artists", values)
+    return list.map { |artist| Artist.new(artist) }
+  end
+
+  def artist_albums()
+    sql = "SELECT * FROM albums WHERE artist_id = $1"
+    values = [@id]
+    albums = SqlRunner.run(sql, "artist_albums", values)
+    return albums.map { |albums| Album.new(albums)} #because there are multiple hashes returned
+
+  end
+
+  def update()
+    sql = "UPDATE artists SET (
+    artist_name
+    ) = (
+      $1
+    ) WHERE id = $2
+    ;
+    "
+    values = [@artist_name, @id]
+    result = SqlRunner.run(sql, "update_artist", values)
+  end
+
+  def delete()
+    sql = "DELETE FROM artists WHERE ID=$1"
+    values = [@id]
+    result = SqlRunner.run(sql, "delete_artist", values)
+  end
+
   # def self.find(first_name)
   #   sql = "SELECT * FROM customers WHERE first_name = $1"
   #   values = [first_name]
@@ -58,12 +73,7 @@ attr_reader :id
   #   return custs.map { |cust_hash| Customer.new(cust_hash) }
   # end
   #
-  # def orders()
-  #   sql = "SELECT * FROM pizza_orders WHERE customer_id = $1"
-  #   values = [@id]
-  #   orders = SqlRunner.run(sql, "orders", values)
-  #   return orders.map { |orders| PizzaOrder.new(orders)} #because there are multiple hashes returned
-  #
+  
   # end
 
 

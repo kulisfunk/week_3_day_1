@@ -33,4 +33,37 @@ attr_accessor :album_name, :genre, :artist_id
     values = []
     result = SqlRunner.run(sql, "delete_all", values)
   end
+
+  def self.show_albums()
+    sql = "SELECT * FROM albums"
+    values = []
+    list = SqlRunner.run(sql, "show_albums", values)
+    return list.map { |albums| Album.new(albums) }
+  end
+
+  def album_artist()
+    sql = "SELECT * FROM artists WHERE id = $1;"
+    values = [@artist_id]
+    artists = SqlRunner.run(sql, "album_artist", values)
+    return artists.map { |artists| Artist.new(artists)} #because there are multiple hashes returned
+  end
+
+  def update()
+    sql = "UPDATE albums SET (
+    album_name, genre, artist_id
+    ) = (
+      $1, $2, $3
+    ) WHERE id = $4
+    ;
+    "
+    values = [@album_name, @genre, @artist_id, @id]
+    result = SqlRunner.run(sql, "update_album", values)
+  end
+
+  def delete()
+    sql = "DELETE FROM albums WHERE ID=$1"
+    values = [@id]
+    result = SqlRunner.run(sql, "delete_albums", values)
+  end
+
 end
