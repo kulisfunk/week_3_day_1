@@ -76,7 +76,7 @@ def update()
     sql = "SELECT * FROM bounty_list WHERE homeworld=$1;"
     values = [homeworld]
     db.prepare("find", sql)
-    perps = db.exec_prepared("find", values)
+    perps = db.exec_prepared("find", values)[0]
     db.close
     return perps.map { |perp_hash| Bounties.new(perp_hash) }
   end
