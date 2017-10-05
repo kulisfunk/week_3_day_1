@@ -45,7 +45,7 @@ attr_accessor :album_name, :genre, :artist_id
     sql = "SELECT * FROM artists WHERE id = $1;"
     values = [@artist_id]
     artists = SqlRunner.run(sql, "album_artist", values)
-    return artists.map { |artists| Artist.new(artists)} 
+    return artists.map { |artists| Artist.new(artists)}
   end
 
   def update()
@@ -61,7 +61,7 @@ attr_accessor :album_name, :genre, :artist_id
   end
 
   def delete()
-    sql = "DELETE FROM albums WHERE ID=$1"
+    sql = "DELETE FROM albums WHERE id=$1"
     values = [@id]
     result = SqlRunner.run(sql, "delete_albums", values)
   end
