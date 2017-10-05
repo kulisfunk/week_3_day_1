@@ -1,0 +1,58 @@
+require('pry')
+require('PG')
+require_relative('../models/student.rb')
+require_relative('../models/subject.rb')
+require_relative('../models/student_subject.rb')
+
+StudentSubject.delete_all()
+Subject.delete_all()
+Student.delete_all()
+
+
+student1 = Student.new('student_name' => 'Martin Reid')
+student1.save()
+student2 = Student.new('student_name' => 'Charlie Chaplin')
+student2.save()
+
+
+
+subject1 = Subject.new('subject_name' => 'Maths', 'teacher_name' => 'Miss Vorderman' )
+subject1.save()
+subject2 = Subject.new('subject_name' => 'Physics', 'teacher_name' => 'Mr Einstein' )
+subject2.save()
+subject3 = Subject.new('subject_name' => 'Chemistry', 'teacher_name' => 'Mr Fleming' )
+subject3.save()
+subject4 = Subject.new('subject_name' => 'French', 'teacher_name' => 'Mr Pierre' )
+subject4.save()
+subject5 = Subject.new('subject_name' => 'German', 'teacher_name' => 'Frau Braun' )
+subject5.save()
+subject6 = Subject.new('subject_name' => 'Arithmetic', 'teacher_name' => 'Mr Count' )
+subject6.save()
+subject7 = Subject.new('subject_name' => 'Geography', 'teacher_name' => 'Mrs Flag' )
+subject7.save()
+subject8 = Subject.new('subject_name' => 'English', 'teacher_name' => 'Mr Smith' )
+subject8.save()
+
+student_subject1 = StudentSubject.new('student_id' => student1.id, 'subject_id' => subject1.id)
+student_subject1.save()
+student_subject2 = StudentSubject.new('student_id' => student1.id, 'subject_id' => subject2.id)
+student_subject2.save()
+student_subject3 = StudentSubject.new('student_id' => student1.id, 'subject_id' => subject3.id)
+student_subject3.save()
+student_subject4 = StudentSubject.new('student_id' => student1.id, 'subject_id' => subject4.id)
+student_subject4.save()
+student_subject5 = StudentSubject.new('student_id' => student1.id, 'subject_id' => subject6.id)
+student_subject5.save()
+student_subject6 = StudentSubject.new('student_id' => student2.id, 'subject_id' => subject5.id)
+student_subject6.save()
+student_subject7 = StudentSubject.new('student_id' => student2.id, 'subject_id' => subject6.id)
+student_subject7.save()
+student_subject8 = StudentSubject.new('student_id' => student2.id, 'subject_id' => subject7.id)
+student_subject8.save()
+student_subject9 = StudentSubject.new('student_id' => student2.id, 'subject_id' => subject8.id)
+student_subject9.save()
+student_subject10 = StudentSubject.new('student_id' => student2.id, 'subject_id' => subject2.id)
+student_subject10.save()
+
+binding.pry
+nil
