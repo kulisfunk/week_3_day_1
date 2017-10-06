@@ -13,7 +13,7 @@ attr_accessor :student_name
   end
 
   def self.delete_all()
-    sql = 'DELETE FROM students'
+    sql = "DELETE FROM students;"
     values = []
     SqlRunner.run(sql, values)
 
