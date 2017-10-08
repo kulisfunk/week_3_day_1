@@ -16,7 +16,7 @@ class Ticket
   def self.delete_all()
     sql = "DELETE FROM tickets;"
     values = []
-    SqlRunner.run(sql, "dlete_all", values)
+    SqlRunner.run(sql, "delete_all", values)
   end
 
   def save()
